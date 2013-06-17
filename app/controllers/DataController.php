@@ -19,4 +19,13 @@ class DataController extends \BaseController {
               ->get();
   }
 
+  public function showSpecificRecord($country, $year) {
+    return DB::table('countries')
+              ->join('records', 'countries.id', '=', 'records.country_id')
+              ->select('records.*')
+              ->where('countries.name', '=', $country)
+              ->where('records.year', '=', $year)
+              ->get();
+  }
+
 }

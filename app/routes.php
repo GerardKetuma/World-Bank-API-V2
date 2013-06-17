@@ -20,4 +20,8 @@ Route::group(array('prefix' => 'api/v2', 'before' => 'auth.basic'), function(){
   Route::get('countries', array('uses' => 'DataController@showCountries'));
 
   Route::get('country/{country}', array('uses' => 'DataController@showCountryRecords'));
+
+  Route::get('country/{country}/{year}', array(
+    'uses' => 'DataController@showSpecificRecord'
+  ));
 });
