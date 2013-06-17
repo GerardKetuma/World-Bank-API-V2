@@ -7,9 +7,16 @@ class DataController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function showCountries()
-	{
+	public function showCountries() {
     return DB::table('countries')->get();
 	}
+
+  public function showCountryRecords($country) {
+    return DB::table('countries')
+              ->join('records', 'countries.id', '=', 'records.country_id')
+              ->select('records.*')
+              ->where('countries.name', '=', $country)
+              ->get();
+  }
 
 }
